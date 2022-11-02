@@ -6,7 +6,7 @@ A *NodeJs* based HTTP web-server that serves the front-end static code to client
 
 ## Installation
 
-Note you need also to install [NodeJs](https://nodejs.org/en/download/) (including *npm*) for back-end sample purposes.
+Note you need o install [NodeJs](https://nodejs.org/en/download/) (including *npm*) to make this sample running well.
 
 The first time, you need to install "*ws*" and "*express*" packages:
 
@@ -20,7 +20,7 @@ npm install ws express
 node runner.js "../front-end/html/"
 ```
 
-You must see this then:
+You must see this:
 
 ```
 > Http listening over folder '../front-end/html/' on port 1000
@@ -44,7 +44,7 @@ When a new socket client connects, the server send the following data:
 
 ```json
 {
-    message: "(Back-End) you're now connected 'socketRemoteAddress'"
+    "message": "(Back-End) you're now connected 'socketRemoteAddress'"
 }
 ```
 
@@ -56,7 +56,7 @@ Receive a simple message to log in the console.
 
 ```json
 {
-    message: "message to log"
+    "message": "message to log"
 }
 ```
 
@@ -66,7 +66,7 @@ Receive an image stream (de)activation order.
 
 ```json
 {
-    stream: true
+    "stream": true
 }
 ```
 
@@ -76,7 +76,7 @@ When the image streaming is active, the back-end sends continuously Base64 encod
 
 ```json
 {
-    image: "base64JPGimageData"
+    "image": "base64JPGimageData"
 }
 ```
 

@@ -6,4 +6,5 @@ REM download and install the latest SDK tools:
 emsdk install latest
 
 REM make the "latest" SDK "active" for the current user:
+REM TODO not working in the batch?
 emsdk activate latest
