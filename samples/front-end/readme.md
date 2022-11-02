@@ -7,7 +7,7 @@ This is a very simple C++ sample based on moth.
 ## Content
 
 - *main.cpp* C++ sample file
-- *html/index.html* HTML sample front-end page root
+- *html/index.html* HTML sample front-end page root (just a minimal *wasm* host page)
 - *html/style.css* CSS sample content
 
 ## How to compile
@@ -15,7 +15,7 @@ This is a very simple C++ sample based on moth.
 The first time, you need to activate *emscripten* SDK:
 
 ```
-"../../emsdk/emsdk_env.bat"
+"../../emsdk/emsdk" activate latest
 ```
 
 Then you can safely compile the "*main.cpp*" sample file:

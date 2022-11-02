@@ -18,7 +18,7 @@ emsdk/
 
 ## Installation
 
-You just need to execute "***install.bat***" that will automatically clone the *emscripten* SDK and activate it in a "*emsdk/*" folder.
+You just need to execute "***install.bat***" that will automatically clone the *emscripten* SDK and install it in the "*emsdk/*" folder.
 
 ## Test
 
