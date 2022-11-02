@@ -1,0 +1,9 @@
+# emscripten SDK install folder:
+emsdk/
+
+# back-end NodeJs data:
+samples/back-end/node_modules/
+
+# front-end generated stuff:
+samples/front-end/html/main.js
+samples/front-end/html/main.wasm
