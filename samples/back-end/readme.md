@@ -1,4 +1,4 @@
-# moth samples/back-end
+# *moth* samples/back-end
 
 ## Purpose
 
@@ -6,9 +6,9 @@ A *NodeJs* based HTTP web-server that serves the front-end static code to client
 
 ## Installation
 
-Note you need o install [NodeJs](https://nodejs.org/en/download/) (including *npm*) to make this sample running well.
+We need to install [NodeJs](https://nodejs.org/en/download/) (including *npm*) to make this sample running well.
 
-The first time, you need to install "*ws*" and "*express*" packages:
+The first time, we need to install the "*ws*" and "*express*" packages:
 
 ```
 npm install ws express
@@ -20,7 +20,7 @@ npm install ws express
 node runner.js "../front-end/html/"
 ```
 
-You must see this:
+We must see this:
 
 ```
 > Http listening over folder '../front-end/html/' on port 1000
@@ -36,11 +36,11 @@ By default, the runner opens the following ports:
 2000	Web-Socket server port
 ```
 
-## WebSocket data exchanges
+## WebSocket JSON data exchanges
 
 ### Connection
 
-When a new socket client connects, the server send the following data:
+When a new socket client connects, the server send to the client the following data:
 
 ```json
 {
@@ -52,7 +52,7 @@ When a new socket client connects, the server send the following data:
 
 #### Informative messages
 
-Receive a simple message to log in the console.
+Receive a simple message to be logged in the console.
 
 ```json
 {
@@ -72,7 +72,7 @@ Receive an image stream (de)activation order.
 
 ### Back-end to front-end data
 
-When the image streaming is active, the back-end sends continuously Base64 encoded JPG image data:
+When the image streaming is active, the back-end sends continuously *Base64* encoded JPG image data (performance testing):
 
 ```json
 {

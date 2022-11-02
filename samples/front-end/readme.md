@@ -1,4 +1,4 @@
-# moth samples/front-end
+# *moth* samples/front-end
 
 ## Purpose
 
@@ -12,13 +12,13 @@ This is a very simple C++ sample based on moth.
 
 ## How to compile
 
-The first time, you need to activate *emscripten* SDK:
+The first time, we need to activate *emscripten* SDK:
 
 ```
 "../../emsdk/emsdk" activate latest
 ```
 
-Then you can safely compile the "*main.cpp*" sample file:
+Then we can safely compile the "*main.cpp*" sample file using ***emcc***:
 
 ```
 emcc -Wall -O3 ../../moth/[moth].cpp main.cpp -std=c++20 -sEXPORTED_FUNCTIONS=_CallCppLambda,_main -lwebsocket.js -sLLD_REPORT_UNDEFINED -sASSERTIONS -sNO_DISABLE_EXCEPTION_CATCHING -o html/main.js
@@ -26,14 +26,14 @@ emcc -Wall -O3 ../../moth/[moth].cpp main.cpp -std=c++20 -sEXPORTED_FUNCTIONS=_C
 
 The compilation output is stored in the "*html/*" folder:
 
-* *html/main.js* emscripten javascript entry point
-* *html/main.wasm* generated webassembly content
+* *html/main.js* emscripten JavaScript entry point
+* *html/main.wasm* generated WebAssembly content
 
 ## Execution
 
 Execute the [*back-end runner*](../back-end/readme.md) first.
 
-Connect to "http://localhost:1000": you must see the sample webpage and be able to exchange data with the back-end.
+Connect to "http://localhost:1000": we must see the sample webpage and be able to exchange data with the back-end.
 
 ## Other helpful flags
 
