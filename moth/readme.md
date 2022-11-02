@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Provides multiple component to properly create HTML structured web-pages using C++ via emscripten/wasm.
+Provides multiple components to properly create HTML structured web-pages using C++.
 
 ## Content
 
