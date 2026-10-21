@@ -1,0 +1,19 @@
+:host {
+	display: inline-block;
+}
+
+select {
+	font: inherit;
+	box-sizing: border-box;
+	width: 100%;
+	color: var(--moth-input-color, inherit);
+	background: var(--moth-input-background, Field);
+	padding: var(--moth-input-padding, 0.3em 0.5em);
+	border: 1px solid var(--moth-input-border, currentColor);
+	border-radius: var(--moth-input-radius, 4px);
+}
+
+select:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}

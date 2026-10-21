@@ -1,0 +1,20 @@
+:root {
+	--moth-accent: #e0457b;
+	--moth-button-background: #fff0f5;
+	--moth-button-border: #e0457b;
+	--moth-button-radius: 999px;
+	--moth-input-border: #e0457b;
+	--moth-panel-display: flex;
+	--moth-panel-gap: 0.5rem;
+}
+
+/* a button in a dark section, with nothing but its variables changed */
+.danger {
+	--moth-button-background: #7a1230;
+	--moth-button-color: white;
+}
+
+/* what the variables do not reach: the inside of a component, through its parts */
+moth-edit::part(input) {
+	font-style: italic;
+}

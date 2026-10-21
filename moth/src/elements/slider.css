@@ -1,0 +1,14 @@
+:host {
+	display: inline-block;
+}
+
+input {
+	width: 100%;
+	margin: 0;
+	accent-color: var(--moth-accent, AccentColor);
+}
+
+input:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}

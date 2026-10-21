@@ -1,0 +1,29 @@
+/* The page's own CSS lays components out and sets the variables that style them (see docs/styling.md).
+   The inside of a component is in its shadow root: this stylesheet does not reach it, the variables
+   and ::part() do. */
+
+:root {
+	--moth-accent: #3b82f6;
+	--moth-button-background: #3b82f6;
+	--moth-button-color: white;
+	--moth-button-border: #3b82f6;
+	--moth-button-radius: 6px;
+	--moth-panel-display: flex;
+	--moth-panel-gap: 0.75rem;
+}
+
+body {
+	font-family: system-ui, sans-serif;
+	margin: 0;
+	min-height: 100vh;
+	display: grid;
+	place-items: center;
+}
+
+.card {
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 1.5rem 2rem;
+	border: 1px solid #ccd;
+	border-radius: 10px;
+}

@@ -1,0 +1,5 @@
+:host {
+	display: var(--moth-panel-display, block);
+	gap: var(--moth-panel-gap, 0);
+	align-items: var(--moth-panel-align, normal);
+}

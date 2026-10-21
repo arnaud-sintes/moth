@@ -1,0 +1,13 @@
+[package]
+name = "moth-sample-todo"
+version.workspace = true
+edition.workspace = true
+publish = false
+
+[dependencies]
+moth = { path = "../../moth", features = ["replication"] }
+moth-sample-protocol = { path = "../protocol" }
+
+[dependencies.web-sys]
+version = "0.3"
+features = ["Location", "UrlSearchParams", "Window"]

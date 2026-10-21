@@ -1,0 +1,8 @@
+:host {
+	display: inline-block;
+}
+
+progress {
+	width: 100%;
+	accent-color: var(--moth-accent, AccentColor);
+}

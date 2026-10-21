@@ -1,0 +1,13 @@
+body {
+	font-family: system-ui, sans-serif;
+	margin: 2rem;
+}
+
+/* moth components are styled from outside through custom properties and ::part() */
+moth-push-button {
+	--moth-button-radius: 8px;
+}
+
+moth-label::part(text) {
+	font-weight: 600;
+}

@@ -1,0 +1,14 @@
+/* the canvas is out of flow: its intrinsic size (the backing store) must never feed back into the
+   host's size, or resizing it would resize the host, which would resize it again */
+:host {
+	display: block;
+	position: relative;
+	height: var(--moth-canvas-height, 150px);
+}
+
+canvas {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+}

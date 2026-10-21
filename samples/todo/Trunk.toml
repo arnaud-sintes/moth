@@ -1,0 +1,3 @@
+# the back-end serves this build under /todo/
+[build]
+public_url = "/todo/"

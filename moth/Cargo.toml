@@ -1,0 +1,86 @@
+[package]
+name = "moth"
+version.workspace = true
+edition.workspace = true
+description = "Parent/child component framework over Web Components, with Rust ownership as the destructor model"
+license = "MIT OR Apache-2.0"
+keywords = ["wasm", "web-components", "ui", "gui", "dom"]
+categories = ["gui", "wasm", "web-programming"]
+# the toolchain it is built and tested with; the real minimum has not been determined (edition 2024
+# needs at least 1.85)
+rust-version = "1.98"
+
+[package.metadata.docs.rs]
+all-features = true
+default-target = "wasm32-unknown-unknown"
+
+[features]
+default = []
+# Model replication over a WebSocket (`Link`, `Actions`): the only part that needs serde.
+replication = ["dep:serde", "dep:serde_json"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+js-sys = "0.3"
+serde = { version = "1", optional = true }
+serde_json = { version = "1", optional = true }
+
+[dependencies.web-sys]
+version = "0.3"
+features = [
+	"BinaryType",
+	"CanvasRenderingContext2d",
+	"CloseEvent",
+	"CustomEvent",
+	"CustomEventInit",
+	"Document",
+	"DocumentFragment",
+	"Element",
+	"Event",
+	"EventTarget",
+	"HtmlButtonElement",
+	"HtmlCanvasElement",
+	"HtmlElement",
+	"HtmlImageElement",
+	"HtmlInputElement",
+	"HtmlSelectElement",
+	"MediaQueryList",
+	"MessageEvent",
+	"Node",
+	"NodeList",
+	"PageTransitionEvent",
+	"ResizeObserver",
+	"ShadowRoot",
+	"Text",
+	"Comment",
+	"WebSocket",
+	"Window",
+	"console",
+]
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3"
+wasm-bindgen-futures = "0.4"
+serde = { version = "1", features = ["derive"] }
+web-sys = { version = "0.3", features = [
+	"CssStyleDeclaration",
+	"EventInit",
+	"FormData",
+	"HtmlFormElement",
+	"HtmlInputElement",
+	"HtmlSelectElement",
+	"ImageData",
+	"MutationObserver",
+	"MutationObserverInit",
+	"MutationRecord",
+	"PageTransitionEvent",
+	"PageTransitionEventInit",
+] }
+
+[[test]]
+name = "link"
+required-features = ["replication"]
+
+[[test]]
+name = "reconnect"
+required-features = ["replication"]

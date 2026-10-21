@@ -1,0 +1,15 @@
+[package]
+name = "moth-sample-front-end"
+version.workspace = true
+edition.workspace = true
+publish = false
+
+[dependencies]
+moth = { path = "../../moth" }
+moth-sample-protocol = { path = "../protocol" }
+js-sys = "0.3"
+serde_json = "1"
+
+[dependencies.web-sys]
+version = "0.3"
+features = ["Location", "UrlSearchParams", "Window"]

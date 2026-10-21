@@ -1,0 +1,31 @@
+[package]
+name = "moth-sample-viewer"
+version.workspace = true
+edition.workspace = true
+publish = false
+
+[dependencies]
+moth = { path = "../../moth", features = ["replication"] }
+moth-sample-protocol = { path = "../protocol" }
+js-sys = "0.3"
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+
+[dependencies.web-sys]
+version = "0.3"
+features = [
+	"Blob",
+	"BlobPropertyBag",
+	"CanvasRenderingContext2d",
+	"Element",
+	"Event",
+	"HtmlElement",
+	"ImageBitmap",
+	"Location",
+	"MouseEvent",
+	"Performance",
+	"PointerEvent",
+	"UrlSearchParams",
+	"WheelEvent",
+	"Window",
+]

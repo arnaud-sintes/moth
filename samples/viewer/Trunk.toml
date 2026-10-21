@@ -1,0 +1,3 @@
+# the back-end serves this build under /viewer/
+[build]
+public_url = "/viewer/"

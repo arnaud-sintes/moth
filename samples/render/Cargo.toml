@@ -1,0 +1,9 @@
+[package]
+name = "moth-sample-render"
+version.workspace = true
+edition.workspace = true
+publish = false
+description = "A small multi-threaded software rasterizer for the viewer sample: procedural meshes, Blinn-Phong shading, supersampling"
+
+[dependencies]
+jpeg-encoder = "0.7"

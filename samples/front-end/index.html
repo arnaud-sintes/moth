@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>moth</title>
+		<link data-trunk rel="rust" href="Cargo.toml">
+		<link data-trunk rel="css" href="style.css">
+	</head>
+	<body>
+		<!-- written in markup: upgraded into Rust components once the wasm calls moth::define_all() -->
+		<section id="declared">
+			<moth-label id="declared-label" text="declared in markup:"></moth-label>
+			<moth-toggle-button id="declared-toggle" text="declared toggle"></moth-toggle-button>
+			<moth-progress-bar id="declared-progress" value="0.4"></moth-progress-bar>
+		</section>
+	</body>
+</html>

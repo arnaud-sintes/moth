@@ -1,0 +1,33 @@
+[workspace]
+members = ["moth", "samples/protocol", "samples/render", "samples/front-end", "samples/todo", "samples/viewer", "samples/back-end"]
+# the back-end is native-only: wasm builds and tests must name their package (-p moth)
+default-members = ["moth", "samples/protocol", "samples/render", "samples/front-end", "samples/todo", "samples/viewer"]
+resolver = "3"
+# the starting project is meant to be copied out and built on its own: it is not a member
+exclude = ["templates"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"
+
+# The wasm samples are built in the release profile above, with panic = "abort". The native server must not abort on a panic (a render that panics would take every viewer down) and renders on every request:
+#   cargo run --profile server -p moth-sample-back-end
+[profile.server]
+inherits = "release"
+panic = "unwind"
+opt-level = 3
+lto = false
+codegen-units = 16
+
+# the sample server renders and encodes frames on every request: optimize those crates even in dev builds
+[profile.dev.package.moth-sample-render]
+opt-level = 3
+
+[profile.dev.package.jpeg-encoder]
+opt-level = 3

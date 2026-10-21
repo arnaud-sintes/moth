@@ -1,0 +1,318 @@
+/* The viewer's look. moth components are laid out with ordinary CSS on their elements and themed
+   through the custom properties and ::part()s they expose; nothing here reaches into their shadow DOM. */
+
+:root {
+	color-scheme: dark;
+	--bg: #090c15;
+	--panel: #111726;
+	--panel-raised: #172033;
+	--line: #232d47;
+	--text: #e8edff;
+	--muted: #8996b8;
+	--accent: #5ad4ff;
+	--accent-ink: #04202b;
+	--good: #46d19a;
+	--bad: #ff6b81;
+	--mono: ui-monospace, "Cascadia Mono", "SF Mono", Consolas, monospace;
+	--radius: 14px;
+
+	/* the moth components' themes */
+	--moth-accent: var(--accent);
+	--moth-input-background: var(--panel-raised);
+	--moth-input-color: var(--text);
+	--moth-input-border: var(--line);
+	--moth-input-radius: 10px;
+	--moth-input-padding: 0.45em 0.7em;
+	--moth-button-background: var(--panel-raised);
+	--moth-button-color: var(--text);
+	--moth-button-border: var(--line);
+	--moth-button-radius: 10px;
+	--moth-button-padding: 0.5em 1em;
+	--moth-toggle-on-background: var(--accent);
+	--moth-toggle-on-color: var(--accent-ink);
+}
+
+html, body {
+	margin: 0;
+	height: 100%;
+	background:
+		radial-gradient(1200px 600px at 12% -10%, #16213d 0%, transparent 60%),
+		radial-gradient(900px 500px at 100% 110%, #10304a 0%, transparent 55%),
+		var(--bg);
+	color: var(--text);
+	font: 14px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+moth-body {
+	display: block;
+	height: 100%;
+}
+
+/* ---- layout */
+
+#app {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 340px;
+	grid-template-rows: auto minmax(0, 1fr);
+	gap: 14px;
+	height: 100%;
+	box-sizing: border-box;
+	padding: 14px;
+}
+
+#topbar {
+	grid-column: 1 / -1;
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 2px 4px;
+}
+
+#topbar .brand {
+	font-size: 17px;
+	font-weight: 650;
+	letter-spacing: 0.01em;
+}
+
+#topbar .brand::before {
+	content: "";
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	margin-right: 10px;
+	border-radius: 3px;
+	background: linear-gradient(135deg, var(--accent), #7a8bff);
+	box-shadow: 0 0 14px rgba(90, 212, 255, 0.7);
+}
+
+#topbar .tagline {
+	color: var(--muted);
+}
+
+#topbar .spacer {
+	flex: 1;
+}
+
+#viewers,
+#status {
+	padding: 3px 12px;
+	border: 1px solid var(--line);
+	border-radius: 999px;
+	background: rgba(17, 23, 38, 0.7);
+	font-size: 12px;
+	white-space: nowrap;
+}
+
+#viewers {
+	color: var(--muted);
+}
+
+#status::before {
+	content: "";
+	display: inline-block;
+	width: 7px;
+	height: 7px;
+	margin-right: 8px;
+	border-radius: 50%;
+	background: currentColor;
+}
+
+#status[data-state="live"] {
+	color: var(--good);
+	border-color: rgba(70, 209, 154, 0.35);
+}
+
+#status[data-state="down"] {
+	color: var(--bad);
+	border-color: rgba(255, 107, 129, 0.35);
+}
+
+/* ---- the stage */
+
+#stage {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	border: 1px solid var(--line);
+	border-radius: 18px;
+	background: #05070d;
+	box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+/* the canvas fills the stage; the pointer drives the camera, so the page must not scroll or zoom on it */
+#viewport {
+	position: absolute;
+	inset: 0;
+	height: auto;
+	cursor: grab;
+	touch-action: none;
+	user-select: none;
+}
+
+#viewport[data-dragging] {
+	cursor: grabbing;
+}
+
+#hud {
+	position: absolute;
+	left: 14px;
+	bottom: 14px;
+	display: grid;
+	grid-template-columns: repeat(4, auto);
+	gap: 8px 22px;
+	padding: 12px 16px;
+	border: 1px solid var(--line);
+	border-radius: 14px;
+	background: rgba(9, 12, 21, 0.74);
+	backdrop-filter: blur(12px);
+	pointer-events: none;
+}
+
+#hud .stat {
+	display: grid;
+	gap: 1px;
+}
+
+#hud .stat-name {
+	color: var(--muted);
+	font-size: 10px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+#hud .stat-value {
+	font: 13px var(--mono);
+	font-variant-numeric: tabular-nums;
+	min-width: 6.5ch;
+}
+
+#spark {
+	grid-column: 1 / -1;
+	--moth-canvas-height: 38px;
+	border-radius: 6px;
+	overflow: hidden;
+}
+
+#hint {
+	position: absolute;
+	right: 16px;
+	bottom: 16px;
+	color: var(--muted);
+	font-size: 12px;
+	pointer-events: none;
+	text-shadow: 0 1px 6px #000;
+}
+
+/* ---- the sidebar */
+
+#sidebar {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	min-height: 0;
+	overflow-y: auto;
+	padding-right: 2px;
+	scrollbar-width: thin;
+	scrollbar-color: var(--line) transparent;
+}
+
+.card {
+	display: grid;
+	gap: 12px;
+	padding: 14px 16px 16px;
+	border: 1px solid var(--line);
+	border-radius: var(--radius);
+	background: linear-gradient(180deg, rgba(23, 32, 51, 0.55), rgba(17, 23, 38, 0.85));
+}
+
+.card-title {
+	color: var(--muted);
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.row {
+	display: grid;
+	grid-template-columns: 92px minmax(0, 1fr);
+	align-items: center;
+	gap: 10px;
+}
+
+.row.with-value {
+	grid-template-columns: 92px minmax(0, 1fr) 46px;
+}
+
+.row-name {
+	color: var(--muted);
+}
+
+.row-value {
+	text-align: right;
+	font: 12px var(--mono);
+	font-variant-numeric: tabular-nums;
+}
+
+.row moth-slider,
+.row moth-dropdown {
+	display: block;
+	width: 100%;
+}
+
+.toggles {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.about {
+	display: block;
+	color: var(--muted);
+	font-size: 12.5px;
+}
+
+/* ---- the moth components, styled from outside through their parts */
+
+moth-push-button::part(button),
+moth-toggle-button::part(button) {
+	font-weight: 550;
+	transition: border-color 120ms, background 120ms, transform 80ms;
+}
+
+moth-push-button::part(button):hover,
+moth-toggle-button::part(button):hover {
+	border-color: var(--accent);
+}
+
+moth-push-button::part(button):active,
+moth-toggle-button::part(button):active {
+	transform: translateY(1px);
+}
+
+moth-toggle-button[toggled]::part(button) {
+	border-color: var(--accent);
+	box-shadow: 0 0 18px rgba(90, 212, 255, 0.35);
+}
+
+/* ---- narrow screens: the sidebar goes under the stage */
+
+@media (max-width: 900px) {
+	#app {
+		grid-template-columns: minmax(0, 1fr);
+		grid-template-rows: auto 62vh auto;
+		height: auto;
+	}
+
+	#sidebar {
+		overflow: visible;
+	}
+
+	#topbar .tagline {
+		display: none;
+	}
+
+	#hud {
+		grid-template-columns: repeat(3, auto);
+	}
+}
