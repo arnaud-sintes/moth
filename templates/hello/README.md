@@ -1,7 +1,7 @@
 # hello: a starting point
 
 A page with one component tree, one callback and a little CSS. Copy this folder, point the `moth` path in
-`Cargo.toml` at wherever moth2 lives, and:
+`Cargo.toml` at wherever the moth repository is checked out, and:
 
 ```
 rustup target add wasm32-unknown-unknown

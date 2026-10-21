@@ -1,4 +1,4 @@
-﻿# moth2
+﻿# moth
 
 A small Rust/WebAssembly UI framework for people who think of a page as a **tree of objects that own their children and clean up in their destructors**, the way a Qt or WPF application does, rather than as a function that re-renders a virtual DOM.
 
@@ -7,7 +7,7 @@ A small Rust/WebAssembly UI framework for people who think of a page as a **tree
 - Every component is a real **Web Component** (custom element with a Shadow DOM, a `<template>`, slots, `::part()` styling, `ElementInternals` for forms), so it can also be written in plain HTML.
 - The only JavaScript you do not generate is one generic shim of about 50 lines (`moth/src/shim.js`), which never changes when you add components; the rest is what `wasm-bindgen` generates.
 
-moth2 rethinks [the C++ version of moth](https://github.com/arnaud-sintes/moth/tree/cpp-final) (this repository's history up to the tag `cpp-final`), a C++/emscripten framework with the same goals, whose lifetime handling never delivered its promise (see [its audit](docs/audit-of-the-cpp-version.md)). **It targets Chromium (Chrome, Edge) only.** It is version 0.1.0 and not published: use it by path, and expect the API to move. Licensed under MIT or Apache-2.0 at your option ([LICENSE-MIT](LICENSE-MIT), [LICENSE-APACHE](LICENSE-APACHE)). How and why it is built, what is guaranteed and what is not, and what is still open: [DESIGN.md](DESIGN.md).
+This is a Rust rewrite of [the C++ version of moth](https://github.com/arnaud-sintes/moth/tree/cpp-final) (this repository's history up to the tag `cpp-final`), a C++/emscripten framework with the same goals, whose lifetime handling never delivered its promise (see [its audit](docs/audit-of-the-cpp-version.md)). **It targets Chromium (Chrome, Edge) only.** It is version 0.1.0 and not published: use it by path, and expect the API to move. Licensed under MIT or Apache-2.0 at your option ([LICENSE-MIT](LICENSE-MIT), [LICENSE-APACHE](LICENSE-APACHE)). How and why it is built, what is guaranteed and what is not, and what is still open: [DESIGN.md](DESIGN.md).
 
 ## Quick start
 
@@ -18,7 +18,7 @@ rustup target add wasm32-unknown-unknown
 cargo install trunk --locked
 ```
 
-The quickest start is to copy [`templates/hello`](templates/hello) (a page, a callback and a little CSS; change the `moth` path in its `Cargo.toml`) and run `trunk serve`. By hand, a project is a binary crate (`Cargo.toml` with `moth = { path = "path/to/moth2/moth" }`), an `index.html` that trunk builds from, and a `main`:
+The quickest start is to copy [`templates/hello`](templates/hello) (a page, a callback and a little CSS; change the `moth` path in its `Cargo.toml`) and run `trunk serve`. By hand, a project is a binary crate (`Cargo.toml` with `moth = { path = "path/to/moth/moth" }`), an `index.html` that trunk builds from, and a `main`:
 
 ```html
 <!doctype html>

@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-# where moth2's `moth` crate is, relative to this file (change it when you copy the template)
+# where the `moth` crate is, relative to this file (change it when you copy the template)
 moth = { path = "../../moth" }
 
 # Naming a browser type in your own code (an event type, an element type) needs the matching feature

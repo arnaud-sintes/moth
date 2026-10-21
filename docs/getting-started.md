@@ -2,11 +2,11 @@
 
 This guide takes you from nothing to a page running in your browser, explains what each part of the starting project does, lists the dependencies you may need, and ends with the problems people meet first. After it: the [tutorial](tutorial.md) builds a real application step by step, [writing components](components.md) shows how to make your own, and [styling](styling.md) how to make it look the way you want.
 
-moth2 is version 0.1.0 and not published: you depend on it by path, and its API may still change. It targets Chromium (Chrome, Edge) only.
+moth is version 0.1.0 and not published: you depend on it by path, and its API may still change. It targets Chromium (Chrome, Edge) only.
 
 ## What you need
 
-- **Rust** with the WebAssembly target. moth2 is built and tested with Rust 1.98; the real minimum has not been determined (edition 2024 needs at least 1.85).
+- **Rust** with the WebAssembly target. moth is built and tested with Rust 1.98; the real minimum has not been determined (edition 2024 needs at least 1.85).
 - **trunk**, which builds the WebAssembly, generates the JavaScript glue and serves the page.
 - **A Chromium-based browser.** Firefox and Safari are not supported, by decision: the code uses Chromium's platform freely.
 
@@ -17,7 +17,7 @@ cargo install trunk --locked
 
 ## The starting project
 
-[`templates/hello`](../templates/hello) is a page with one tree of components, one callback and a little CSS. Copy the folder anywhere, change the `moth` path in `Cargo.toml` to where moth2 lives, and run `trunk serve` in it: it builds, serves the page on <http://127.0.0.1:8080> and rebuilds when a file changes.
+[`templates/hello`](../templates/hello) is a page with one tree of components, one callback and a little CSS. Copy the folder anywhere, change the `moth` path in `Cargo.toml` to where the moth repository is checked out, and run `trunk serve` in it: it builds, serves the page on <http://127.0.0.1:8080> and rebuilds when a file changes.
 
 Its files, in full. `Cargo.toml`:
 
@@ -28,7 +28,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-# where moth2's `moth` crate is, relative to this file (change it when you copy the template)
+# where the `moth` crate is, relative to this file (change it when you copy the template)
 moth = { path = "../../moth" }
 
 # Naming a browser type in your own code (an event type, an element type) needs the matching feature
